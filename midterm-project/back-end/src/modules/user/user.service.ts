@@ -3,6 +3,7 @@ import { UserRepository } from './user.repository';
 import { IUser } from './user.interface';
 import { AccountService } from '../account/account.service';
 import { UserRespDTO } from './dto/response/UserResp';
+import { User } from './user.entity';
 
 @Injectable()
 export class UserService {
@@ -11,11 +12,11 @@ export class UserService {
     private accountService: AccountService,
   ) {}
 
-  async createUser(user: IUser) {
+  async createUser(user: IUser): Promise<User> {
     return this.userRepository.save(user);
   }
 
-  async findUserByAccount(username: string) {
+  async findUserByAccount(username: string): Promise<User> {
     const matchedAccount = await this.accountService.findAccountByUsername(
       username,
     );
@@ -46,5 +47,26 @@ export class UserService {
     };
 
     return meResp;
+  }
+
+  async updateProfile(
+    username: string,
+    userReqDto: UserRespDTO,
+  ): Promise<UserRespDTO> {
+    const me = await this.findUserByAccount(username);
+
+    const informationForUpdating: IUser = {
+      ...me,
+      ...userReqDto,
+    };
+
+    const updatedUser = await this.userRepository.save(informationForUpdating);
+
+    const userResp: UserRespDTO = {
+      email: updatedUser.email,
+      fullname: updatedUser.fullname,
+    };
+
+    return userResp;
   }
 }
