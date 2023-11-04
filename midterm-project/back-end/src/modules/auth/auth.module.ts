@@ -4,6 +4,7 @@ import { AuthController } from './auth.controller';
 import { AccountModule } from '../account/account.module';
 import { JwtModule } from '@nestjs/jwt';
 import { Constant } from 'src/shared/constant';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { Constant } from 'src/shared/constant';
       secret: Constant.JWT_ACCESS_KEY,
       signOptions: { expiresIn: Constant.JWT_ACCESS_EXPIRED },
     }),
+    UserModule,
   ],
   controllers: [AuthController],
   providers: [AuthService],
