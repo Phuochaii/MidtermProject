@@ -1,5 +1,6 @@
 import { IsNotEmpty, Length } from 'class-validator';
-export class LoginReqDTO {
+
+export class RegisterReqDTO {
   @IsNotEmpty({ message: 'Username cannot be empty!' })
   @Length(4, 255, { message: 'Username has 4 characters at least' })
   username: string;

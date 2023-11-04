@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   OneToOne,
   PrimaryColumn,
   PrimaryGeneratedColumn,
@@ -19,5 +20,6 @@ export class User {
   fullname: string;
 
   @OneToOne(() => Account, (account) => account.username)
+  @JoinColumn({ name: 'account_pk' })
   account: Account;
 }
