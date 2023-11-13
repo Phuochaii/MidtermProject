@@ -6,12 +6,17 @@ import {
 } from "react-router-dom";
 import './index.css'
 import LandingPage from './routes/LandingPages';
+import HomePage from './routes/Homepage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage></LandingPage>,
   },
+  {
+    path: "/homepage",
+    element: <HomePage></HomePage>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
