@@ -4,22 +4,30 @@
 export default function LandingPage(){
     return(
         <div className={`bg-[url('/LandingPage.jpg')] bg-center bg-cover w-auto h-screen relative`}>
-            <nav className="absolute left-1/2  top-[4%]">
+            <nav className="absolute left-1/2  top-[4%] transform -translate-x-1/2 lg:-translate-x-0">
                 <ul className="flex flex-row space-x-10 p-5">
                     <li>
-                        <a className="text-white text-2xl font-bold">HOMEPAGE</a>
+                        <a className="text-white text-xl lg:text-2xl font-bold">HOMEPAGE</a>
                     </li>
                     <li>
-                        <a className="text-white text-2xl font-bold">ABOUT</a>
+                        <a className="text-white text-xl lg:text-2xl font-bold">ABOUT</a>
                     </li>
                     <li>
-                        <a className="text-white text-2xl font-bold">CONTACT</a>
+                        <a className="text-white text-xl lg:text-2xl font-bold">CONTACT</a>
                     </li>
                 </ul>
             </nav>
 
-            <div className="absolute left-[5%] top-1/2 transform -translate-y-1/2 max-w-[40%] flex flex-col space-y-10">
-                <div className="uppercase text-6xl text-green-500 font-bold">
+            <div className="absolute top-[5%] left[5%] max-[800px]:hidden ">
+                <img className="max-h-[30vh]" src ="/logo.png"alt="logo"></img>
+            </div>
+
+            <div className="absolute left-[5%] top-2/3 transform -translate-y-1/2 lg:max-w-[40%] flex flex-col space-y-10 max-[800px]:items-center p-4">
+                <div className="min-[800px]:hidden">
+                    <img className="max-w-[80vw]" src ="/logo.png"alt="logo"></img>
+                </div>
+
+                <div className="uppercase lg:text-6xl text-4xl text-green-500 font-bold">
                     Welcome to <p>Smart Classroom</p>
                 </div>
 
