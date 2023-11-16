@@ -9,7 +9,7 @@ export default function Navbar({OnToggleSideBar}:NavbarProp){
 
 
     return(
-        <div className="flex justify-between p-4 border-b-2 border-emerald-300">
+        <div className="flex justify-between bg-white p-4 border-b-2 border-emerald-300 w-screen sticky top-0 z-10">
             <div className="flex items-center space-x-4 ">
                 <div className='hover:bg-emerald-50 rounded-full p-2 text-emerald-500' onClick={OnToggleSideBar}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
