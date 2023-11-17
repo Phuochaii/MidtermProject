@@ -23,5 +23,8 @@ export default function Root() {
 }
 
 export function load(){
-    redirect(`/landingpage`)
+    const isLoggedIn = localStorage.getItem('token') !== null;
+    if(!isLoggedIn){
+        redirect(`/landingpage`);
+    }
   } 

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 interface SidebarProp{
     isOpen: boolean;
@@ -9,7 +10,11 @@ export default function Sidebar({isOpen}:SidebarProp){
             <div className="fixed">
                 <ul className="flex flex-col space-y-4 p-4 text-lg">
                     <li>
-                        <a className={`hover:bg-slate-200 p-2 rounded-full`}>Trang chủ</a>
+                        <NavLink to={`/`} className={`hover:bg-slate-200 p-2 rounded-full ${({isActive, isPending}:any)=>isActive
+                        ? " bg-green-500 "
+                        : isPending
+                        ? " bg-blue "
+                        : ""}`}>Trang chủ</NavLink>
                     </li>
                     <li>
                         <a className={`hover:bg-slate-200 p-2 rounded-full`}>Bài tập</a>

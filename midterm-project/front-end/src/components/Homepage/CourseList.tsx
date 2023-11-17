@@ -9,7 +9,7 @@ export default function CourseList(){
             <h1 className="text-2xl font-semibold mb-4">Danh sách khóa học</h1>
             <div className="flex space-gap-5 flex-wrap justify-between">
                 {courses.map((course) => (
-                <CourseCard
+                <CourseCard key={course}
                     
                 />
                 ))}

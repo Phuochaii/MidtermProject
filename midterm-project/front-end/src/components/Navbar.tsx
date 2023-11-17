@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface NavbarProp{
     OnToggleSideBar: ()=>void;
@@ -21,9 +22,9 @@ export default function Navbar({OnToggleSideBar}:NavbarProp){
                     <img className="w-[50px]" src ="/logo.png"alt="logo"></img>
                 </div>
 
-                <div className='text-emerald-500 text-xl'>
+                <Link to={`/`} className='text-emerald-500 text-xl'>
                     Khóa học
-                </div>
+                </Link>
 
             </div>
 
@@ -37,7 +38,7 @@ export default function Navbar({OnToggleSideBar}:NavbarProp){
                     <div className="absolute top-14 right-0 bg-white border border-gray-300 rounded-md p-4 ">
                             <ul className="flex flex-col space-y-4">
                                 <li>
-                                    <a className="whitespace-nowrap hover:bg-slate-200 p-2 rounded-lg">Chỉnh sửa thông tin</a>
+                                    <Link to="/auth/edit" className="whitespace-nowrap hover:bg-slate-200 p-2 rounded-lg">Chỉnh sửa thông tin</Link>
                                 </li>
                                 <li>
                                     <a className="whitespace-nowrap hover:bg-slate-200 p-2 rounded-lg">Đăng Xuất</a>
