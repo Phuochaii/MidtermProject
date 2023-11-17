@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 
@@ -7,7 +8,7 @@ export default function LandingPage(){
             <nav className="absolute left-1/2  top-[4%] transform -translate-x-1/2 lg:-translate-x-0">
                 <ul className="flex flex-row space-x-10 p-5">
                     <li>
-                        <a className="text-white text-xl lg:text-2xl font-bold">HOMEPAGE</a>
+                        <Link to={`/homepage`} className="text-white text-xl lg:text-2xl font-bold">HOMEPAGE</Link>
                     </li>
                     <li>
                         <a className="text-white text-xl lg:text-2xl font-bold">ABOUT</a>
@@ -32,7 +33,7 @@ export default function LandingPage(){
                 </div>
 
                 <div>
-                    <button className="uppercase text-white bg-neutral-500 py-2 px-4 rounded-full">Đăng ký ngay</button>
+                    <Link to={`/auth/regist`}><button className="uppercase text-white bg-neutral-500 py-2 px-4 rounded-full">Đăng ký ngay</button></Link>
                 </div>
 
                 <div className="text-gray-400 text-m">
