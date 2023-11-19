@@ -6,7 +6,7 @@ interface Props {
 function Success({ isSuccess, title, message }: Props) {
   return (
     isSuccess && (
-      <div className="absolute top-0 right-0 flex bg-white dark:bg-gray-900 items-center px-6 py-4 text-sm border-t-2 rounded-b shadow-sm border-green-500">
+      <div className="absolute top-0 right-0 z-10 flex bg-white dark:bg-gray-900 items-center px-6 py-4 text-sm border-t-2 rounded-b shadow-sm border-green-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-8 h-8 text-green-500 stroke-current"

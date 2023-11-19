@@ -6,7 +6,7 @@ interface Props {
 function Error({ isError, title, message }: Props) {
   return (
     isError && (
-      <div className="absolute top-0 right-0 flex bg-white dark:bg-gray-900 items-center px-6 py-4 text-sm border-t-2 rounded-b shadow-sm border-red-500">
+      <div className="absolute top-0 right-0 z-10 flex bg-white dark:bg-gray-900 items-center px-6 py-4 text-sm border-t-2 rounded-b shadow-sm border-red-500">
         <svg
           viewBox="0 0 24 24"
           className="w-8 h-8 text-red-500 stroke-current"
