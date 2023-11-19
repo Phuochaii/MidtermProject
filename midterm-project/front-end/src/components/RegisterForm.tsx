@@ -33,17 +33,23 @@ export default function RegisterForm() {
     if (res.password === res.confirmPassword) {
       try {
         const { confirmPassword, ...requestBody } = res;
-        const response = await axios.post(`${backEndServer}/auth/register`, requestBody);
+        console.log(`${backEndServer}/auth/register`);
+        const response = await axios.post(
+          `${backEndServer}/auth/register`,
+          requestBody
+        );
         console.log(response);
         setIsSuccess(true);
+        setIsError(false);
         setTimeout(() => {
           navigate("/auth/login");
         }, 2000);
       } catch (e: any) {
         console.log(e);
-        if (e.data) {
+        if (e.response.data) {
           setIsError(true);
-          setErrorMessage(e.data.message);
+          setIsSuccess(false);
+          setErrorMessage(e.response.data.message);
         } else {
           console.error("Error submitting form:", e);
         }

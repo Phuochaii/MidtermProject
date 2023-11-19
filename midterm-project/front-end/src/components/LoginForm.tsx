@@ -34,14 +34,16 @@ export default function LoginForm() {
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("refreshToken", response.data.refreshToken);
       setIsSuccess(true);
+      setIsError(false);
       setTimeout(() => {
         navigate("/homepage");
       }, 2000);
     } catch (e: any) {
       console.log(e);
-      if (e.data) {
+      if (e.response.data) {
         setIsError(true);
-        setErrorMessage(e.data.message);
+        setIsSuccess(false);
+        setErrorMessage(e.response.data.message);
       } else {
         console.error("Error login:", e);
       }

@@ -38,13 +38,15 @@ export default function EditForm() {
 
       console.log(response);
       setIsSuccess(true);
+      setIsError(false);
       setTimeout(() => {
         window.location.href = "/";
       }, 2000);
     } catch (error: any) {
-      if (error.data) {
+      if (error.response.data) {
         setIsError(true);
-        setErrorMessage(error.data.message);
+        setIsSuccess(false);
+        setErrorMessage(error.response.data.message);
       } else {
         console.log("Error update profile: ", error);
       }
@@ -55,7 +57,7 @@ export default function EditForm() {
       <Success
         isSuccess={isSuccess}
         title="Cập nhật thông tin thành công"
-        message="Đang chuyển tiếp đến thông tin cá nhân."
+        message="Đang chuyển tiếp đến trang chủ."
       ></Success>
       <Error
         isError={isError}
@@ -89,7 +91,7 @@ export default function EditForm() {
               type="text"
               name="fullname"
               id="full-name"
-              value={res.fullname}
+              value={res.fullname ? res.fullname : ""}
               onChange={(e) => inputChangeHandler(e)}
               className="mt-1 p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
             />
@@ -107,7 +109,7 @@ export default function EditForm() {
               name="email"
               type="email"
               autoComplete="email"
-              value={res.email}
+              value={res.email ? res.email : ""}
               onChange={(e) => inputChangeHandler(e)}
               className="mt-1 p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
             />
