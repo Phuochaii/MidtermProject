@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { redirect, useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import Success from "./Notifications/Success";
 import Error from "./Notifications/Error";
 import axiosClient from "../shared/lib/axios";
@@ -10,17 +10,17 @@ interface EditFormProps {
 }
 
 export default function EditForm() {
-  const outletCoxtext:any = useOutletContext();
+  const outletCoxtext: any = useOutletContext();
   const [res, setRes] = useState<EditFormProps>(outletCoxtext[0]);
   const [isCancel, setIsCancel] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (isCancel) {
-      navigate('/');
+      navigate("/");
     }
   }, [isCancel]);
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +30,8 @@ export default function EditForm() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      console.log(res)
-      const response = await axiosClient.put("/users/me/profile",{
+      console.log(res);
+      const response = await axiosClient.put("/users/me/profile", {
         fullname: res.fullname,
         email: res.email,
       });
@@ -39,7 +39,7 @@ export default function EditForm() {
       console.log(response);
       setIsSuccess(true);
       setTimeout(() => {
-        window.location.href='/'
+        window.location.href = "/";
       }, 2000);
     } catch (error: any) {
       if (error.data) {
