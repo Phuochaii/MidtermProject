@@ -8,23 +8,34 @@ import {
 import './index.css'
 import LandingPage  from './routes/LandingPages';
 import HomePage from './routes/Homepage';
-import Root from './routes/Root';
+import Root, {load as rootLoad} from './routes/Root';
+import Authentication from "./pages/Authentication";
+import EditForm from "./components/EditForm";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    loader: rootLoad,
     children:[
       { index: true, element: <HomePage /> },
       {
         path:"homepage",
         element: <HomePage/>
       },
+      {
+        path:"/auth/edit",
+        element: <EditForm></EditForm>
+      }
     ],
   },
   {
     path: "/landingpage",
     element: <LandingPage></LandingPage>
+  },
+  {
+    path: "/auth/*",
+    element: <Authentication></Authentication>,
   }
 ]);
 

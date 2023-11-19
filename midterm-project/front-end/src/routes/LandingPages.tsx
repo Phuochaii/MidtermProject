@@ -33,7 +33,7 @@ export default function LandingPage(){
                 </div>
 
                 <div>
-                    <Link to={`/auth/regist`}><button className="uppercase text-white bg-neutral-500 py-2 px-4 rounded-full">Đăng ký ngay</button></Link>
+                    <Link to={`/auth/register`}><button className="uppercase text-white bg-neutral-500 py-2 px-4 rounded-full">Đăng ký ngay</button></Link>
                 </div>
 
                 <div className="text-gray-400 text-m">

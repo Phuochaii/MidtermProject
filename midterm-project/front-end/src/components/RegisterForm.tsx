@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Success from "./Notifications/Success";
 import Error from "./Notifications/Error";
+import { backEndServer } from "../shared/const";
 
 interface FormData {
   username: string;
@@ -32,13 +33,14 @@ export default function RegisterForm() {
     if (res.password === res.confirmPassword) {
       try {
         const { confirmPassword, ...requestBody } = res;
-        const response = await axios.post("/api/v1/auth/register", requestBody);
+        const response = await axios.post(`${backEndServer}/auth/register`, requestBody);
         console.log(response);
         setIsSuccess(true);
         setTimeout(() => {
           navigate("/auth/login");
         }, 2000);
       } catch (e: any) {
+        console.log(e);
         if (e.data) {
           setIsError(true);
           setErrorMessage(e.data.message);

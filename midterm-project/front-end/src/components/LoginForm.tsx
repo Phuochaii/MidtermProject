@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Success from "../components/Notifications/Success";
 import Error from "../components/Notifications/Error";
+import { backEndServer } from "../shared/const";
 
 interface FormData {
   username: string;
@@ -28,7 +29,7 @@ export default function LoginForm() {
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/v1/auth/login", res);
+      const response = await axios.post(`${backEndServer}/auth/login`, res);
       console.log(response);
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("refreshToken", response.data.refreshToken);
@@ -37,6 +38,7 @@ export default function LoginForm() {
         navigate("/homepage");
       }, 2000);
     } catch (e: any) {
+      console.log(e);
       if (e.data) {
         setIsError(true);
         setErrorMessage(e.data.message);

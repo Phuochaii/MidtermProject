@@ -1,25 +1,26 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { redirect, useNavigate, useOutletContext } from "react-router-dom";
 import Success from "./Notifications/Success";
 import Error from "./Notifications/Error";
+import axiosClient from "../shared/lib/axios";
 // import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 interface EditFormProps {
-  fullName?: string;
+  fullname?: string;
   email?: string;
 }
 
-export default function EditForm(formData: EditFormProps) {
-  const [res, setRes] = useState<EditFormProps>(formData);
+export default function EditForm() {
+  const outletCoxtext:any = useOutletContext();
+  const [res, setRes] = useState<EditFormProps>(outletCoxtext[0]);
   const [isCancel, setIsCancel] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     if (isCancel) {
-      navigate("/users/me");
+      navigate('/');
     }
   }, [isCancel]);
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,18 +30,16 @@ export default function EditForm(formData: EditFormProps) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const accessToken = localStorage.getItem("token");
-
-      const response = await axios.put("/users/me/profile", null, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+      console.log(res)
+      const response = await axiosClient.put("/users/me/profile",{
+        fullname: res.fullname,
+        email: res.email,
       });
 
       console.log(response);
       setIsSuccess(true);
       setTimeout(() => {
-        navigate("/users/me");
+        window.location.href='/'
       }, 2000);
     } catch (error: any) {
       if (error.data) {
@@ -88,10 +87,9 @@ export default function EditForm(formData: EditFormProps) {
             </label>
             <input
               type="text"
-              name="fullName"
+              name="fullname"
               id="full-name"
-              autoComplete="given-name"
-              value={res.fullName}
+              value={res.fullname}
               onChange={(e) => inputChangeHandler(e)}
               className="mt-1 p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
             />
