@@ -1,0 +1,1 @@
+export const backEndServer = import.meta.env.VITE_BACKEND_SERVER
