@@ -23,6 +23,7 @@ import { UserModule } from 'src/modules/user/user.module';
         database: configService.get('DATABASE_NAME'),
         synchronize: true,
         autoLoadEntities: true,
+        ssl: true,
       }),
     }),
   ],
